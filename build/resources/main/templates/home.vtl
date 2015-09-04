@@ -1,8 +1,76 @@
-<h1>Header Goes Here</h1>
-<form action='/results' method='get'>
-  <div class="form-group">
-    <input id="form_id" name="form_name" class="form-control" type="text">
-  </div>
+<h1>Find Yo Shoes</h1>
 
-      <button type="submit" class="btn btn-info">Submit!</button>
+<h3>Oh no! You can't find your fave shoe brand at your local shoe store? Let us help you out. Select your brand and we can find the store nearest to you. Are we missing the best brands? Add a new brand below and it will be in stock before ya know it. Know of a store with the coolest selection? Let us know and we will add it to the list.
+ </h3>
+
+<h2>Current Brands In Stock</h2>
+
+<table class="table table-striped">
+  <tr>
+    <td>Name</td>
+    <td>Store</td>
+  </tr>
+  #foreach($brand in $brands)
+    <tr>
+      <td>$brand.getName()</td>
+      <td>$brand.getStores()</td>
+    </tr>
+  #end
+</table>
+
+<h2>Current Stores</h2>
+
+<table class="table table-striped">
+  <tr>
+    <td>Name</td>
+    <td>Phone</td>
+    <td>Address</td>
+    <td>Delete</td>
+    <td>Edit</td>
+  </tr>
+  #foreach($store in $stores)
+    <tr>
+      <td>$store.getName()</td>
+      <td>$store.getPhone()</td>
+      <td>$store.getAddress()</td>
+      <td><form action="/store/$store.getId()/delete" method="post">
+        <button type="submit" class="btn btn-primary">
+        <i class="glyphicon glyphicon-trash"></i></span>
+      </form></td>
+      <td><form action="/store/$store.getId()/update" method="get">
+        <button type="submit" class="btn btn-primary">
+        <i class="glyphicon glyphicon-pencil"></i></span>
+      </form></td>
+    </tr>
+  #end
+</table>
+
+<h2> Add a Brand </h2>
+
+<form action='/new-brand' method='post'>
+  <input type="hidden" name="id" value="$brand.getId">
+  <div class="form-group">
+    <input id="brandName" name="brandName" class="form-control" type="text" required="true" placeholder="Name">
+  </select>
+  </div>
+      <button type="submit" class="btn btn-info brand">Add it!</button>
 </form>
+
+<h2> Add a Store </h2>
+
+<form action='/new-store' method='post'>
+  <input type="hidden" name="id" value="$store.getId">
+  <div class="form-group">
+    <input id="storeName" name="storeName" class="form-control" type="text" required="true" placeholder="Name">
+    <input id="storeAddress" name="storeAddress" class="form-control" type="text" required="true" placeholder="Address">
+    <input id="storePhone" name="storePhone" class="form-control" type="text" required="true" placeholder="Phone">
+
+  </select>
+  </div>
+      <button type="submit" class="btn btn-info store">Add it!</button>
+</form>
+
+
+
+
+
