@@ -54,5 +54,15 @@ public class Brand {
       return brand;
     }
   }
+  
+  public List<Store> getStores() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT brands.* FROM stores JOIN stores_brands ON (stores.id = stores_brands.store_id) JOIN brands ON (stores_brands.brand_id = brands.id) WHERE stores.id = :id";
+      List<Store> stores = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetch(Store.class);
+        return stores;
+      }
+  }
 
 }

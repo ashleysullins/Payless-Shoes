@@ -64,10 +64,10 @@ public class Store {
   public static Store find(int id) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM stores where id=:id";
-      Store client = con.createQuery(sql)
+      Store store = con.createQuery(sql)
         .addParameter("id", id)
         .executeAndFetchFirst(Store.class);
-      return client;
+      return store;
     }
   }
   
@@ -90,6 +90,16 @@ public class Store {
       .addParameter("id", id)
       .executeUpdate();
     }
+  }
+  
+  public List<Brand> getBrands() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT stores.* FROM brands JOIN stores_brands ON (brands.id = stores_brands.brand_id) JOIN stores ON (stores_brands.store_id = stores.id) WHERE brands.id = :id";
+      List<Brand> brands = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetch(Brand.class);
+        return brands;
+      }
   }
   
 }

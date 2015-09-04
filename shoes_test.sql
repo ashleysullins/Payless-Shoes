@@ -70,8 +70,7 @@ CREATE TABLE stores (
     id integer NOT NULL,
     name character varying,
     address character varying,
-    phone character varying,
-    brand_id integer
+    phone character varying
 );
 
 
@@ -172,7 +171,7 @@ SELECT pg_catalog.setval('brands_id_seq', 1, false);
 -- Data for Name: stores; Type: TABLE DATA; Schema: public; Owner: ashleysullins
 --
 
-COPY stores (id, name, address, phone, brand_id) FROM stdin;
+COPY stores (id, name, address, phone) FROM stdin;
 \.
 
 

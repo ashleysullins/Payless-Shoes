@@ -10,7 +10,7 @@ public class StoreTest {
   public void all_emptyAtFirst() {
   assertEquals(Store.all().size(), 0);
   }
-
+  
   @Test
   public void equals_returnsTrueIfStoresAretheSame() {
     Store firstStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
