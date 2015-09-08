@@ -1,0 +1,37 @@
+<h1>Stores that have $brand.getName() in stock include: </h1>
+
+#if($brand.getStores())
+  <table class="table table-striped">
+    <tr>
+      <td>Name</td>
+      <td>Phone</td>
+      <td>Address</td>
+    </tr>
+    #foreach($store in $brand.getStores())
+      <tr>
+        <td>$store.getName()</td>
+        <td>$store.getPhone()</td>
+        <td>$store.getAddress()</td>
+      </tr>
+    #end
+  </table>
+#else
+<p>Sorry, this brand is not in stock! Try again later.  
+#end
+
+
+<h4>Add a store that has this brand available:</h4>
+
+<form action='/add-store' method='post'>
+    <input id="brand_id" name="brand_id" type="hidden" value="$brand.getId()">
+    <label for="store_id">Select a Store</label>
+    <select id='store_id' name='store_id' type='text'>
+      #foreach($store in $allStores)
+        <option value="$store.getId()"> $store.getName()</option>
+      #end
+    </select>
+    <button type='submit'>Add Store</button>
+</form>
+
+<p><a href="/">Go back</a></p>
+

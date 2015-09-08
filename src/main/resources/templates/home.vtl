@@ -3,17 +3,15 @@
 <h3>Oh no! You can't find your fave shoe brand at your local shoe store? Let us help you out. Select your brand and we can find the store nearest to you. Are we missing the best brands? Add a new brand below and it will be in stock before ya know it. Know of a store with the coolest selection? Let us know and we will add it to the list.
  </h3>
 
-<h2>Current Brands In Stock</h2>
+<h2>Brands Available</h2>
 
 <table class="table table-striped">
   <tr>
     <td>Name</td>
-    <td>Store</td>
   </tr>
   #foreach($brand in $brands)
     <tr>
-      <td>$brand.getName()</td>
-      <td>$brand.getStores()</td>
+      <td><a href="brands/$brand.getId()">$brand.getName()</a></td>
     </tr>
   #end
 </table>
@@ -30,7 +28,7 @@
   </tr>
   #foreach($store in $stores)
     <tr>
-      <td>$store.getName()</td>
+      <td><a href="stores/$store.getId()">$store.getName()</a></td>
       <td>$store.getPhone()</td>
       <td>$store.getAddress()</td>
       <td><form action="/store/$store.getId()/delete" method="post">
@@ -45,7 +43,7 @@
   #end
 </table>
 
-<h2> Add a Brand </h2>
+<h2>Add a Brand</h2>
 
 <form action='/new-brand' method='post'>
   <input type="hidden" name="id" value="$brand.getId">
@@ -56,7 +54,7 @@
       <button type="submit" class="btn btn-info brand">Add it!</button>
 </form>
 
-<h2> Add a Store </h2>
+<h2>Add a Store</h2>
 
 <form action='/new-store' method='post'>
   <input type="hidden" name="id" value="$store.getId">
@@ -69,8 +67,3 @@
   </div>
       <button type="submit" class="btn btn-info store">Add it!</button>
 </form>
-
-
-
-
-
