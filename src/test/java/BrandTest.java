@@ -34,4 +34,14 @@ public class BrandTest {
     assertTrue(myBrand.equals(savedBrand));
   }
   
+  @Test
+  public void add_addStoretoBrand() {
+    Brand myBrand = new Brand("Adidas");
+    myBrand.save();
+    Store myStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
+    myStore.save();
+    myBrand.addStore(myStore);
+    assertEquals(myBrand.getStores().size(), 1);
+  }
+  
 }

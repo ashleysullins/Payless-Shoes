@@ -1,32 +1,49 @@
-# _{Application Name}_
+# Payless-Shoes
 
-##### _{Brief description of application}, {Date of current version}_
-
-#### By _**{List of contributors}**_
+#### By Ashley Sullins
 
 ## Description
 
-_{This is a detailed description of your application. Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. Do you want other developers to use this code in their apps? Talk about things like that here in simple terms.}_
+This is an application that can be used for a shoe franchise to display different brands of shoes they carry at different stores within the brand. A user can add stores and brands to the database, and can associate a brand with a store and vice versa.
+
+This is an exercise completed at the end of the fourth week of Epicodus, a code school, to see if we have successfully learned how to gather information out of databases using a join table. In this particular example, a join table was created to get store location information for specific brands and brand information for specific stores. 
 
 ## Setup
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+In order to install Payless-Shoes, you'll need to have [Java] (https://www.learnhowtoprogram.com/lessons/java-setup), [Gradle] (https://www.learnhowtoprogram.com/lessons/setting-up-a-project-with-gradle) and [Postgres] (https://www.learnhowtoprogram.com/lessons/installing-postgres) installed on your computer.
 
-_{Leave nothing to chance! You want it to be easy for potential employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Are there other applications this app depends on?}_
+Databases are stored in the ``shoes.sql`` and ``shoes_test.sql`` files. To use them locally, type in ``psql [database_name] < [sqlfile]`` into your command line. You'll need to create the databases shoes and shoes_test inside of psql prior to running the psql command. 
+
+You can also create the database manually using the following commands:
+
+```
+CREATE DATABASE shoes;
+\c shoes;
+CREATE TABLE stores (id serial PRIMARY KEY, name varchar, address varchar, phone varchar);
+CREATE TABLE brands (id serial PRIMARY KEY, name varchar);
+CREATE TABLE stores_brands (id serial PRIMARY KEY, brand_id int, store_id int);
+CREATE DATABASE shoes_test WITH TEMPLATE shoes;
+```
+
+In order to run the application, you'll need to type ``gradle run`` on your command line. All additional libraries will be installed after running gradle. The local version of this application can be found at ``localhost:4567``.
+ 
+## Tests
+
+There are both unit tests for each object and integration tests associated with this application. The test files can be found under /src/test/java in the ``AppIntegrationTest.java``, ``BrandTest.java``, ``StoreTest.java`` files. To run the test suite, you'll need to type ``gradle test`` in your command line.
 
 ## Technologies Used
 
-_{Tell me about the languages you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+Technologies used to create this application include:
+
+* Gradle
+* Spark 
+* Fluentlenium for integration testing and jUnit for unit testing
+* Java 
+* HTML and CSS with Bootstrap styling
 
 ### Legal
 
-*{This is boilerplate legal language. Read through it, and if you like it, use it. There are other license agreements online, but you can generally copy and paste this.}*
-
-Copyright (c) 2015 **_{List of contribtors}_**
+Copyright (c) 2015 Ashley Sullins
 
 This software is licensed under the MIT license.
 
@@ -41,8 +58,4 @@ The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNE
+IMPLIED.

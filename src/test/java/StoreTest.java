@@ -28,7 +28,7 @@ public class StoreTest {
   
   @Test
   public void find_findsStoreInDatabase_true() {
-    Store myStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
+    Store myStore = new Store("Payless", "100", "1-800");
     myStore.save();
     Store savedStore = Store.find(myStore.getId());
     assertTrue(myStore.equals(savedStore));
@@ -48,5 +48,15 @@ public class StoreTest {
     myStore.save();
     myStore.delete();
     assertEquals(Store.all().size(), 0);
+  }
+  
+  @Test
+  public void add_addBrandtoStore() {
+    Brand myBrand = new Brand("Adidas");
+    myBrand.save();
+    Store myStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
+    myStore.save();
+    myStore.addBrand(myBrand);
+    assertEquals(myStore.getBrands().size(), 1);
   }
 }
