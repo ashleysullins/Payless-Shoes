@@ -44,8 +44,8 @@ public class Store {
       Store newStore = (Store) otherStore;
       return this.getName().equals(newStore.getName()) &&
         this.getId() == newStore.getId() &&
-        this.getAddress() == newStore.getAddress() &&
-        this.getPhone() == newStore.getPhone();
+        this.getAddress().equals(newStore.getAddress()) &&
+        this.getPhone().equals(newStore.getPhone());
     }
   }
   

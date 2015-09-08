@@ -8,7 +8,7 @@ public class StoreTest {
   
   @Test
   public void all_emptyAtFirst() {
-  assertEquals(Store.all().size(), 0);
+    assertEquals(Store.all().size(), 0);
   }
   
   @Test

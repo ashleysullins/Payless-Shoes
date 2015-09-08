@@ -8,7 +8,7 @@ public class BrandTest {
   
   @Test
   public void all_emptyAtFirst() {
-  assertEquals(Brand.all().size(), 0);
+    assertEquals(Brand.all().size(), 0);
   }
 
   @Test
@@ -42,6 +42,5 @@ public class BrandTest {
     myStore.save();
     myBrand.addStore(myStore);
     assertEquals(myBrand.getStores().size(), 1);
-  }
-  
+  }  
 }

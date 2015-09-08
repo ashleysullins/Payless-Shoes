@@ -15,7 +15,6 @@ public class DatabaseRule extends ExternalResource {
       con.createQuery(stores).executeUpdate();
       con.createQuery(brands).executeUpdate();
       con.createQuery(stores_brands).executeUpdate();
-
     }
   }
 }

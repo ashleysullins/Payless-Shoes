@@ -20,8 +20,8 @@ public class AppIntegrationTest extends FluentTest {
 
   @Test
   public void rootTest() {
-      goTo("http://localhost:4567/");
-      assertThat(pageSource()).contains("Find Yo Shoes");
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("Find Yo Shoes");
   }
   
   @Test
@@ -51,29 +51,29 @@ public class AppIntegrationTest extends FluentTest {
   
   @Test
   public void storeIsAssociatedWithBrand() {
-  Brand myBrand = new Brand("Adidas");
-  myBrand.save();
-  Store myStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
-  myStore.save();
-  myBrand.addStore(myStore);
-  
-  String brandPath = String.format("http://localhost:4567/brands/%d", myBrand.getId());
-  
-  goTo(brandPath);
-  assertThat(pageSource()).contains("Adidas", "PDX Payless", "100 SW Main", "1-800-632-SHOES");
+    Brand myBrand = new Brand("Adidas");
+    myBrand.save();
+    Store myStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
+    myStore.save();
+    myBrand.addStore(myStore);
+    
+    String brandPath = String.format("http://localhost:4567/brands/%d", myBrand.getId());
+    
+    goTo(brandPath);
+    assertThat(pageSource()).contains("Adidas", "PDX Payless", "100 SW Main", "1-800-632-SHOES");
   }
   
   @Test
   public void brandIsAssociatedWithStore() {
-  Brand myBrand = new Brand("Adidas");
-  myBrand.save();
-  Store myStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
-  myStore.save();
-  myStore.addBrand(myBrand);
-  
-  String storePath = String.format("http://localhost:4567/stores/%d", myStore.getId());
-  
-  goTo(storePath);
-  assertThat(pageSource()).contains("Adidas", "PDX Payless", "Adidas");
+    Brand myBrand = new Brand("Adidas");
+    myBrand.save();
+    Store myStore = new Store("PDX Payless", "100 SW Main", "1-800-632-SHOES");
+    myStore.save();
+    myStore.addBrand(myBrand);
+    
+    String storePath = String.format("http://localhost:4567/stores/%d", myStore.getId());
+    
+    goTo(storePath);
+    assertThat(pageSource()).contains("Adidas", "PDX Payless", "Adidas");
   }
 }
